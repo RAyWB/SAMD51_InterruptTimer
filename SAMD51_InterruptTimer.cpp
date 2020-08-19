@@ -110,6 +110,13 @@ void TC_Timer::setPeriod(unsigned long period) {
   TC3_wait_for_sync();
 }
 
+
+void TC_Timer::stopTimer() {
+  TC3->COUNT16.CTRLA.bit.ENABLE = 0;
+  TC3_wait_for_sync();
+  NVIC_DisableIRQ(TC3_IRQn);
+}
+
 void TC3_Handler() {
   // If this interrupt is due to the compare register matching the timer count
   if (TC3->COUNT16.INTFLAG.bit.MC0 == 1) {
