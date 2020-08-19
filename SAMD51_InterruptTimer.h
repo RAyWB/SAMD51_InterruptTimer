@@ -18,6 +18,7 @@ class TC_Timer {
   public:
     void startTimer(unsigned long period, void (*f)());
     void setPeriod(unsigned long period);
+    void stopTimer();
 };
 
 extern TC_Timer TC;
